@@ -5,12 +5,10 @@
 
 <PageTitle>Index</PageTitle>
 
-
 <div class="shadow-lg">
-
     <div class="card shadow-lg border-0 rounded" style="background-color: #f8f9fa;">
-        <div class="card-header bg-primary text-white" style="text-align: center;">
-            <h3><strong>Listado de T&eacute;cnicos</strong></h3>
+        <div class="card-header" style="background-color: #0058ff; text-align: center;">
+            <h3 style="font-weight: bold; margin: 0; color: #ffffff;">Listado de T&eacute;cnicos</h3>
         </div>
 
         <div class="card-body">
@@ -37,7 +35,6 @@
                 <div class="col-4">
                     <div class="input-group">
                         <input class="form-control" @bind="ValorFiltro" placeholder="Buscar" />
-                     
                     </div>
                 </div>
             </div>
@@ -45,14 +42,12 @@
                 <button type="button" class="btn btn-primary" @onclick="PantallaCrear"> Crear</button>
             </div>
 
-
             <table class="table table-bordered text-center mt-4">
                 <thead>
                     <tr>
                         <th>ID de Tecnico</th>
                         <th>Nombres</th>
                         <th>Sueldo/Hora</th>
-                        <th>Detalles</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -66,23 +61,12 @@
                             <td>@tecnico.SueldoHora</td>
 
                             <td>
-                                <button type="button" class="btn btn-outline-primary" @onclick="() => PantallaObservar(tecnico.TecnicoId)">
-                                    Detalles
-
-                                </button>
-                            </td>
-
-                            <td>
                                 <button type="button" class=" btn btn-outline-primary bi bi-pencil-square" @onclick="() => PantallaEditar(tecnico.TecnicoId)">
-                                    
-
                                 </button>
                             </td>
 
                             <td>
                                 <button type="button" class="btn btn-outline-danger bi bi-trash" @onclick="() => PantallaEliminar(tecnico.TecnicoId)">
-                                    
-
                                 </button>
                             </td>
                         </tr>
@@ -110,11 +94,6 @@
 
     public void PantallaCrear() => navigationManager.NavigateTo("/Tecnicos/Create");
 
-    public void PantallaObservar(int id)
-    {
-        navigationManager.NavigateTo($"/Tecnicos/Details/{id}");
-    }
-
     public void PantallaEditar(int id)
     {
         navigationManager.NavigateTo($"/Tecnicos/Edit/{id}");
@@ -137,7 +116,6 @@
             {
                 ListaTecnicos = await tecnicoService.Listar(e => e.SueldoHora == (decimal)sueldoHora);
             }
-           ;
         }
         else
         {
